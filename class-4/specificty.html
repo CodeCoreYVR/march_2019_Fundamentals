@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document</title>
+  <style>
+    /*
+    Element targeting!!!
+
+    when targeting an element by its id
+    you need to prepend the id name with 
+    a hash character: "#"
+    */
+    #box-1 {
+      color: red;
+    }
+    /*
+    when targeting elements with a class
+    you need to prepend the class name
+    with a period character: "."
+    */
+    .box {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    /*
+    you can also target elements base
+    on the element's tag name
+    */
+    div {
+      font-size: 30px;
+    }
+    /*
+    you can use psuedo class attribute
+    to apply css rules.
+    */
+    div:hover {
+      color: blue;
+      cursor: pointer;
+    }
+
+    /*
+    * Inline style has the most
+      presedence when it comes to
+      applying rules. (this is
+      when you use the "style"
+      property.
+
+    * The next level of highest
+      presedence is the ID targeted
+      styling rules. An example
+      is the "#box-1".
+    * then class pseudo-class follows
+      which looks like: "div:hover"
+    * and last but not least, element
+      targeted styles. An example
+      would be the rules declared in
+      "div" css block.
+    */
+  </style>
+</head>
+<body>
+  <!--
+    inline styling has higher
+    presedence over id targeted
+    styling
+    https://css-tricks.com/specifics-on-css-specificity/
+  -->
+  <div id="box-1" style="color: blue" class="box">
+    Box 1
+  </div>
+  <div id="box-2" class="box">
+    Box 2
+  </div>
+  <div id="box-3" class="box">
+    Box 3
+  </div>
+</body>
+</html>

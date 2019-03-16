@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document</title>
+  <style>
+    /*
+      In here, i'm targeting
+      a single element with the
+      id of box1 (hence #box1)
+      that element, MUST be inside
+      another element called
+      "#set-of-boxes-1" which in turn,
+      is inside a div.
+
+      In other words, when you use
+      the space character " " between
+      css targets, you are referencing
+      hierarchy.
+    */
+    div #set-of-boxes-1 #box1 {
+      background: black;
+      color: white;
+    }
+    /*
+    this is not working because
+    the "#set-of-boxes-1 #box1"
+    must be inside a span tag
+    (which it is not)
+    */
+    span #set-of-boxes-1 #box1 {
+      background: black;
+      color: white;
+    }
+    div .box {
+      color: red
+    }
+    /*
+    The greater than character ">"
+    references immediate parent/child
+    relationship.
+
+    The following does not affect
+    the page because "#box2"
+    is not immediately under
+    #list-of-box-sets
+    */
+    #list-of-box-sets > #box2 {
+      color: blue;
+    }
+    #list-of-box-sets > #set-of-boxes-1 > #box2 {
+      color: blue;
+    }
+    
+    /*
+    when you delimit targets by using
+    the comma character "," you are
+    listing targets.
+
+    this will target both element with
+    id "#box7" and "#box8"
+    */
+    #box7, #box8 {
+      color: turquoise;
+    }
+    /*
+    You can also mix and match
+    */
+    #list-of-box-sets > #set-of-boxes-2 #box5,
+    #list-of-box-sets > #set-of-boxes-2 > #box6 {
+      background: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="list-of-box-sets">
+    <div id="set-of-boxes-1">
+      <div id="box1" class="box">Box 1</div>
+      <div id="box2" class="box">Box 2</div>
+      <div id="box3" class="box">Box 3</div>
+      <div id="box4" class="box">Box 4</div>
+    </div>
+    <div id="set-of-boxes-2">
+      <div id="box5" class="box">Box 5</div>
+      <div id="box6" class="box">Box 6</div>
+      <div id="box7" class="box">Box 7</div>
+      <div id="box8" class="box">Box 8</div>
+    </div>
+  </div>
+</body>
+</html>
