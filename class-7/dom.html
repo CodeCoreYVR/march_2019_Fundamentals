@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DOM Example</title>
+</head>
+<style>
+
+  #welcome-title {
+    color: blue;
+    cursor: pointer;
+  }
+
+</style>
+<body>
+  <h2 id="welcome-title">Welcome!</h2>
+  <div>
+    Hi there! how are you doing today?
+
+    <p>
+      Here's a list of my favourite websites
+    </p>
+
+    <ul>
+      <li>
+        <a href="https://www.google.ca">Google</a>
+      </li>
+    </ul>
+  </div>
+  <script src="jquery-3.3.1.min.js"></script>
+  <script>
+      /*
+      the following statement opens a tab wuth google in it.
+      this is equivalent of the link in html (bello -> google)
+      */
+      // window.open( 'https://www.google.ca' );
+  
+      /*
+      the following statement will produce the value found
+      in our h2 html tag which is "Welcome!"
+  
+      This is the equivalent of the following javascript
+      object:
+      const document = {
+        body: {
+          childNodes: [
+            { innerText: "Welcome!" }
+          ]
+        }
+      }
+      */
+      // document.body.childNodes[1].innerText
+  
+      // you could dynamically change the h2 element
+      // by using an assignment operator liek so:
+      // document.body.childNodes[1].innerText = "New Page Title";
+  
+      /*
+      document, is an object that has a method of getElementById
+      which returns the DOM for the item (IF FOUND, null otherwise)
+  
+      then we are adding an evenrt listener so that when the h2 title
+      gets clicked, a message is printed out to the console
+      */
+      document.getElementById('welcome-title').addEventListener( 'click', function(){ 
+        console.log("Event triggered using vanila javascript");
+      });
+      /*
+      "$" is a functio/objectn provided by jquery
+      which takes a parameter - a target to html element(s).
+      */
+      $('#welcome-title').on('click', function(){
+        console.log("Event triggered using jQuery javascript");
+      });
+      // the $ function could look something like this:
+      // const $ = function ( identifier ) {
+      //   identifier = identifier.replace('#', '');
+      //   return document.getElementById(identifier);
+      // } 
+    </script>
+</body>
+</html>

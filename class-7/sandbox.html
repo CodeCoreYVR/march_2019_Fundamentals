@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>jQuery Sandbox</title>
+</head>
+<body>
+  
+  <form id="submit-form">
+    <div>
+      <!--
+        when the "for" attribute
+        in the label matches
+        and input id, it adds
+        the behaviour that when a user
+        clicks that label, it adds
+        the cursor into the input field
+      -->
+      <label for="firstName">
+          What is your first name?
+        </label>
+        <input type="text" id="firstName" />
+    </div>
+    <button id="submit-button" type="submit" disabled="disabled">
+      print to console
+    </button>
+    <br />
+    <small>
+      Open your developer console!!!!
+    </small>
+  </form>
+  <script src="jquery-3.3.1.min.js"></script>
+  <script>
+
+    $('#firstName').on('keyup', function(event) {
+      const firstNameValue = $('#firstName').val();
+      const isFirstNameEmpty = firstNameValue.length == 0;
+      $('#submit-button').attr('disabled', isFirstNameEmpty);
+    });
+
+    // this will retrieve the form by its id
+    $('#submit-form').on('submit', function(event){
+      /**
+       * By default, a form will submit the form
+       * data to a server. Because we do not have a server
+       * we don't want that default behaviour to take place.
+       */
+      console.log('prevent the default form submission behaviour');
+      event.preventDefault();
+
+      const firstNameValue = $('#firstName').val();
+      console.log( `Your name is ${firstNameValue}` );
+    });
+
+  </script>
+</body>
+</html>

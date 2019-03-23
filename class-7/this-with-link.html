@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>jQuery Sandbox</title>
+</head>
+<body>
+  
+  <ul>
+    <li>Task 1 <a href="#">Remove</a></li>
+    <li>Task 2 <a href="#">Remove</a></li>
+    <li>Task 3 <a href="#">Remove</a></li>
+    <li>Task 4 <a href="#">Remove</a></li>
+    <li>Task 5 <a href="#">Remove</a></li>
+    <li>Task 6 <a href="#">Remove</a></li>
+    <li>Task 7 <a href="#">Remove</a></li>
+  </ul>
+  
+  <script src="jquery-3.3.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+
+      $('a').on('click', function() {
+        // $(this).parent().remove();
+        $(this).parent().slideUp();
+      });
+
+    });
+  </script>
+</body>
+</html>
