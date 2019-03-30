@@ -4,22 +4,30 @@ $(document).ready(function() {
   const taskInput = $('#task-input');
   const button = $('#task-button');
   const taskList = $('#task-list');
-  const noTaskRow = $('#no-task');
+  var config = {
+    apiKey: "AIzaSyACaqv99M7D64xjQyUFqNQiy3O4xuqX3s4",
+    authDomain: "todo-app-bc73c.firebaseapp.com",
+    databaseURL: "https://todo-app-bc73c.firebaseio.com",
+    projectId: "todo-app-bc73c",
+    storageBucket: "todo-app-bc73c.appspot.com",
+    messagingSenderId: "712859701480"
+  };
+  firebase.initializeApp(config);
+
   const addTaskUI = function(id, task) {
-    taskList.append(
-      `<li class="list-group-item" id="${id}">
+    const newRow = `<li class="list-group-item" id="${id}">
 
-      <div class="row">
-        <div class="col-10">
-          ${task}
-        </div>
-        <div class="col-2 text-right">
-          <a href="#" class="text-right">Delete</a>
-        </div>
+    <div class="row">
+      <div class="col-10">
+        ${task}
       </div>
+      <div class="col-2 text-right">
+        <a href="#" class="text-right">Delete</a>
+      </div>
+    </div>
 
-    </li>`
-    );
+  </li>`;
+    taskList.append(newRow);
   }
   const removeTaskFromUI = function(id) {
     $(`#${id}`).remove();
@@ -34,8 +42,8 @@ $(document).ready(function() {
     return Math.floor(Math.random() * 1000 + 1);
   };
   const removeNoRecordsRowIfApplicable = function() {
-    if( noTaskRow.length > 0 ) {
-      noTaskRow.remove();
+    if( $('#no-task').length > 0 ) {
+      $('#no-task').remove();
     }
   };
   const addNoRecordsRowIfApplicable = function() {
@@ -45,6 +53,21 @@ $(document).ready(function() {
       );
     }
   }
+  const removeItemFromFirebase = function (id) {
+    taskReference.child(id).remove();
+  }
+  const addItemToFirebase = function (taskValue) {
+    const data = { task: taskValue };
+    taskReference.push(data);
+  }
+
+  const taskReference = firebase.database().ref('tasks');
+  taskReference.on('child_added', function (dbItem) {
+    const id = dbItem.key;
+    const task = dbItem.val().task;
+    removeNoRecordsRowIfApplicable();
+    addTaskUI( id, task );
+  });
 
   taskInput.on('keyup', function(event) {
     const isTaskInputEmpty = taskInput.val().length === 0;
@@ -54,17 +77,19 @@ $(document).ready(function() {
   form.on('submit', function(event) {
     event.preventDefault();
 
-    const genericId = getRandomNumber();
     const task = taskInput.val();
 
+    addItemToFirebase(task);
     removeNoRecordsRowIfApplicable();
-    addTaskUI(genericId, task);
+
     clearInput();
     focusOnInput();
   });
 
-  taskList.on("click", "li a", function(event){
+  taskList.on("click", "li a", function(event) {
     const id = $(event.target).closest('li').attr('id');
+
+    removeItemFromFirebase(id);
     removeTaskFromUI(id);
     addNoRecordsRowIfApplicable();
   });
