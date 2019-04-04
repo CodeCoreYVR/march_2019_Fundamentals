@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+  </head>
+  <body>
+
+    <div class="container mt-5">
+
+      <h1>Todo List App</h1>
+
+      <form id="task-form">
+        <div class="input-group mb-3">
+          <input type="text" id="task-input" class="form-control" placeholder="Task" aria-label="Task" aria-describedby="task-button">
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="submit" disabled id="task-button">Save</button>
+          </div>
+        </div>
+      </form>
+
+      <ul id="task-list" class="list-group">
+        <li class="list-group-item text-center" id="no-task">No Records Found</li>
+      </ul>
+
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
